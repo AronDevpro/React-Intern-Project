@@ -1,7 +1,27 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { colors } from "../../utils/Color.js";
+import {useDispatch, useSelector} from "react-redux";
+import {login} from "../../Redux/Features/Login.js";
+import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
 function SignupPage() {
+    const dispatch = useDispatch();
+    const loginUser = useSelector(state => state.login)
+    const navigate = useNavigate();
+
+    const handleLogin = () => {
+        dispatch(login());
+        localStorage.setItem("isAuthenticated", loginUser.isAuthenticated);
+        navigate("/home");
+    }
+
+    useEffect(() => {
+        const isAuthenticated = localStorage.getItem("isAuthenticated");
+        if (isAuthenticated){
+            navigate("/home");
+        }
+    }, [navigate]);
     return (
         <Container className="my-3">
             <Row lg={2} md={1} xs={1} className="justify-content-center">
@@ -38,7 +58,7 @@ function SignupPage() {
                             </Col>
                         </Row>
                         <Container className="px-3">
-                        <Button className="col-12" href="/home">Create Account</Button>
+                        <Button className="col-12" onClick={handleLogin}>Create Account</Button>
                         </Container>
                     </Form>
                     <Row className="my-4">
