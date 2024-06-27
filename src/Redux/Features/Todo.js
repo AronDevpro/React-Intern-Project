@@ -5,8 +5,8 @@ let todoId = 1
 
 const saveToLocalStorage = (state) => {
     try {
-        const x = JSON.stringify(state);
-        localStorage.setItem('todos', x);
+        const stateStr = JSON.stringify(state);
+        localStorage.setItem('todos', stateStr);
     } catch (e) {
         console.error(e);
     }
@@ -19,7 +19,10 @@ const loadFromLocalStorage = () => {
             return [];
         }
         const savedState = JSON.parse(stateStr);
-        todoId = savedState.length ? Math.max(savedState.map(todo => todo.id))+1 : 1;
+        if (savedState.length > 0) {
+            const maxId = Math.max(...savedState.map(todo => todo.id));
+            todoId = maxId + 1;
+        }
         return savedState;
     } catch (e) {
         console.error(e);

@@ -34,7 +34,7 @@ function AddTodos() {
                             label="Title"
                             className="mb-3 mb-md-0"
                         >
-                            <Form.Control value={data.title} name='title' type="text" placeholder="eg: create website" onChange={handleChange}/>
+                            <Form.Control required value={data.title} name='title' type="text" placeholder="eg: create website" onChange={handleChange}/>
                         </FloatingLabel>
                     </Col>
                     <Col>
@@ -43,7 +43,7 @@ function AddTodos() {
                             label="Description"
                             className="mb-3 mb-md-0"
                         >
-                            <Form.Control value={data.description} name='description' type="text" placeholder="eg: create website for xyz.com" onChange={handleChange}/>
+                            <Form.Control required value={data.description} name='description' type="text" placeholder="eg: create website for xyz.com" onChange={handleChange}/>
                         </FloatingLabel>
                     </Col>
                     <Col>

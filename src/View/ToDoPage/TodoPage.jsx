@@ -8,6 +8,8 @@ function TodoPage() {
     const todos = useSelector((state) => state.todo.items);
     const filter = useSelector((state) => state.todo.filter);
 
+    console.log(todos)
+
     const filterTodos = todos.filter((todo) => {
         if (filter === 'completed') {
             return todo.completed;
