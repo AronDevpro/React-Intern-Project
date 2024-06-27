@@ -1,9 +1,7 @@
-import {Col, Row} from "react-bootstrap";
-import Container from "react-bootstrap/Container";
 import {useSelector} from "react-redux";
 import AddTodos from "../../Component/AddTodos.jsx";
-import TodoItem from "../../Component/TodoItem.jsx";
 import FilterTodo from "../../Component/FilterTodo.jsx";
+import Todolist from "../../Component/Todolist.jsx";
 
 function TodoPage() {
 
@@ -24,15 +22,7 @@ function TodoPage() {
         <>
             <AddTodos/>
             <FilterTodo/>
-            <Container style={{minHeight:"50vh"}}>
-                <Row md={2}>
-                    {filterTodos.map((todo) => (
-                        <Col key={todo.id}>
-                            <TodoItem todo={todo}/>
-                        </Col>
-                    ))}
-                </Row>
-            </Container>
+            <Todolist filterTodos={filterTodos}/>
         </>
     );
 }
